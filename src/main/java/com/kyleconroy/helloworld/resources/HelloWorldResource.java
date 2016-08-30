@@ -23,6 +23,7 @@ public class HelloWorldResource {
 		this.defaultName = defaultName;
 		this.counter = new AtomicLong();
 	}
+	
 
 	@GET
 	@Timed
