@@ -1,26 +1,28 @@
-package com.kyleconroy.helloworld;
+package com.ourpeople.main;
 
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Environment;
-import com.kyleconroy.helloworld.resources.HelloWorldResource;
-import com.kyleconroy.helloworld.health.TemplateHealthCheck;
-import com.kyleconroy.helloworld.HelloWorldConfiguration;
+import com.ourpeople.health.TemplateHealthCheck;
+import com.ourpeople.main.OurPeopleConfiguration;
+import com.ourpeople.resources.HelloWorldResource;
+import com.ourpeople.resources.LoginResource;
 
-public class HelloWorldService extends Service<HelloWorldConfiguration> {
+public class OurPeopleService extends Service<OurPeopleConfiguration> {
 	public static void main(String[] args) throws Exception {
-		new HelloWorldService().run(args);
+		new OurPeopleService().run(args);
 	}
 
-	private HelloWorldService() {
+	private OurPeopleService() {
 		super("hello-world");
 	}
 
 	@Override
-	protected void initialize(HelloWorldConfiguration configuration,
+	protected void initialize(OurPeopleConfiguration configuration,
 				  Environment environment) {
 		final String template = configuration.getTemplate();
 		final String defaultName = configuration.getDefaultName();
 		environment.addResource(new HelloWorldResource(template, defaultName));
+		environment.addResource(new LoginResource());
 		environment.addHealthCheck(new TemplateHealthCheck(template));
 	}
 }

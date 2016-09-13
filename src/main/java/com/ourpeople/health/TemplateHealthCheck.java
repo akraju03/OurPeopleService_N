@@ -1,4 +1,4 @@
-package com.kyleconroy.helloworld.health;
+package com.ourpeople.health;
 
 import com.yammer.metrics.core.HealthCheck;
 
